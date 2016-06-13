@@ -1,0 +1,159 @@
+﻿@model CMC.ViewModels.EmployeeIndexData
+
+@{
+    ViewBag.Title = "Employees";
+}
+
+<h2>Employees</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th> Employee ID</th>
+        <th> First Name</th>
+        <th> Last Name </th>
+        <th> Email </th>
+        <th> Phone Number </th>
+        <th> Office Number </th>
+        <th> Type </th>
+        <th> Status </th>
+        <th> Contracts </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Employees)
+    {
+
+        string selectedRow = "";
+        if (item.ID == ViewBag.EmployeeID)
+        {
+            selectedRow = "success";
+        }
+        <tr class="@selectedRow">
+            <td> @Html.DisplayFor(modelItem => item.EmployeeID)</td>
+            <td> @Html.DisplayFor(modelItem => item.FirstName)</td>
+            <td> @Html.DisplayFor(modelItem => item.LastName)</td>
+            <td> @Html.DisplayFor(modelItem => item.Email)</td>
+            <td> @Html.DisplayFor(modelItem => item.PhoneNumber)</td>
+            <td> @Html.DisplayFor(modelItem => item.OfficeNumber)</td>
+            <td>
+
+                @if (item.Type == 2)
+                {
+                    @Html.Label("PM")
+                }
+                else
+                {
+                    @Html.Label("TM")
+                }
+
+
+
+            </td>
+
+
+            <td> @Html.DisplayFor(modelItem => item.Status)</td>
+            <td>
+                @{
+        foreach (var contract in item.Contracts)
+        {
+            @contract.ContractID @:  @contract.Name<br />
+                        }
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Select", "Index", new { id = item.ID }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+
+@if (Model.Contracts != null)
+{
+
+
+    <h3>Contracts assigned to selected Employee </h3>
+    <table class="table">
+        <tr>
+            <th></th>
+            <th>Contract ID </th>
+            <th>Name</th>
+            <th>Value </th>
+            <th> Currency</th>
+            <th> Start Date </th>
+            <th> End Date </th>
+            <th> Status </th>
+
+
+        </tr>
+
+        @foreach (var item in Model.Contracts)
+        {
+            string selectedRow = "";
+            if (item.ContractID == ViewBag.ContractID)
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.ActionLink("Select", "Index", new { ContractID = item.ContractID })
+                </td>
+                <td> @item.ContractID</td>
+                <td> @item.Name</td>
+                <td> @item.value</td>
+                <td> @item.currency </td>
+                <td> @item.StartDate</td>
+                <td> @item.EndDate</td>
+                <td> @item.Status</td>
+            </tr>
+        }
+
+    </table>
+}
+
+
+@if (Model.Allocations != null)
+{
+    <h3>
+        Projects in Selected Contract
+    </h3>
+    <table class="table">
+        <tr>
+            <th> WON </th>
+            <th> Name</th>
+            <th> Description</th>
+            <th> Start Date </th>
+            <th> End Date </th>
+            <th> Status </th>
+
+        </tr>
+        @foreach (var item in Model.Allocations)
+        {
+            <tr>
+                <td>
+                    @item.Project.WON
+                </td>
+                <td>
+                    @item.Project.Name
+                </td>
+                <td>
+                    @item.Project.Description
+                </td>
+                <td> @item.Project.StartDate</td>
+                <td> @item.Project.EndDate</td>
+                <td> @item.Project.Status</td>
+
+
+            </tr>
+        }
+    </table>
+}

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<CMC.ViewModels.AllocationDateGroup>
+
+@{
+    ViewBag.Title = "Project Statistics";
+}
+
+<h2>Project Statistics</h2>
+
+<table>
+    <tr>
+        <th>
+            Start Date 
+        </th>
+        <th>
+             Project Count 
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AllocationDate) <br>
+            </td>
+            <td>
+                @item.ProjectCount
+            </td>
+        </tr>
+    }
+</table>

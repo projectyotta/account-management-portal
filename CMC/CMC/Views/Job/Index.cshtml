@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CMC.Models.Job>
+
+@{
+    ViewBag.Title = "Jobs";
+}
+
+<h2>Job</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Employee Name 
+        </th>
+        <th>
+            Job Name 
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Administrator.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.JobID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.JobID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.JobID })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>CMC-Schneider</h1>
+    <p class="lead">Account Management Portal </p>
+
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Quick Links </h2>
+        <p>
+
+            <a target="_blank" href="@Url.Content("~\\HomePageData\\CSharpCodingStandards.pdf")"> Code Guidelines </a><br /> <br /> 
+            <a target="_blank" href="https://msdn.microsoft.com/en-us/library/vstudio/ff400235(v=vs.100).aspx"> Configuration Guidelines </a><br /><br /> 
+            <a target="_blank" href="http://www.asp.net"> Asp.NET downloads </a><br /><br /> 
+            <a target="_blank" href="http://www.ultimatix.net"> Ultimatix  </a><br /><br /> 
+            <a target="_blank" href="http://blogs.msdn.com/b/aspnetue/archive/2010/09/17/second_2d00_post.aspx"> Best Practices </a><br /><br /> 
+            <a target="_blank" href="http://www.education.vic.gov.au/devreskit/appdev/standards/asp/aspnet-standards-summary.htm"> Coding Standards </a><br /><br /> 
+            <a target="_blank" href="https://msdn.microsoft.com/en-us/library/dd831853.aspx"> VS2013 Documentation  </a><br /><br />
+            <a target="_blank" href="http://www.asp.net/mvc"> MVC Documentation  </a><br /><br />
+            <a target="_blank" href="@Url.Content("~\\HomePageData\\pdf-sample.pdf")">View PDF</a><br /><br /> 
+            <a target="_blank" href="@Url.Content("~\\HomePageData\\Capture.JPG")">View Image</a>
+             
+            
+
+        </p>
+
+    </div>
+    <div class="col-md-6">
+
+
+        <h2> PDF </h2>
+        <div id="Carousel" class="carousel slide carousel-fade col-lg-8 col-offset-4" style=" overflow:hidden;  width: 475px; margin: 0 auto">
+            <ol class="carousel-indicators" style="color:black">
+                <li data-target=" carousel" data-slide-to="0" class="active">
+                </li>
+                @{
+                    int y;
+                    for (y = 2; y <= @ViewBag.NumberOfPages; y++)
+                    {
+
+
+                        <li data-target="Carousel" data-slide-to="@y"></li>
+                    }
+                }
+
+
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <object width="1200" height="480" type="application/pdf" data="@Url.Content("~\\HomePageData\\CSharpCodingStandards.pdf?")#zoom=50&page=1&scrollbar=0&navpanes=0" id="pdf_content" class="img-responsive" style="overflow:hidden; height:450px; width:900px"></object>
+                </div>
+
+                @{
+                    int x;
+                    for (x = 2; x <= @ViewBag.NumberOfPages; x++)
+                    {
+
+                        <div class="item">
+                            <object width="1200" height="480" type="application/pdf" data="@Url.Content("~\\HomePageData\\CSharpCodingStandards.pdf?")#zoom=50&page=@x &scrollbar=0&navpanes=0" id="pdf_content" class="img-responsive" style="overflow:hidden; height:450px; width: 900px; "></object>
+                        </div>
+
+
+
+                    }
+                }
+
+
+
+            </div>
+
+            <a class="left carousel-control" href="#Carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" style="color: #1F1F1F"></span>
+            </a>
+            <a class="right carousel-control" href="#Carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" style="color: #1F1F1F"></span>
+            </a>
+        </div>
+
+        <br />
+
+
+
+    </div>
+
+</div>
