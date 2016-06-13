@@ -1,6 +1,4 @@
-# Internal-company-portal
-Has contract , project and an employee management system apart from an image viewer for the users to view and upload images. 
-
+# account-management-portal
 I had to develop this as a part of my internship . I was not allowed to take the code I had written in their premises ( for obvious reasons ) , 
 so I recreated the entire thing on my laptop again. 
 
